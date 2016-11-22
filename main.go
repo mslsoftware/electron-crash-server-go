@@ -104,8 +104,6 @@ func uploadDumpHandler(w http.ResponseWriter, r *http.Request, title string) {
 		body = "Error with file"
 	}
 
-	title = "newdump"
-
 	p := &Page{Title: title, Body: []byte(body)}
 	err := p.save()
 	if err != nil {
