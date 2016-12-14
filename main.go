@@ -90,13 +90,17 @@ func uploadHandler(w http.ResponseWriter, r *http.Request, title string) {
 }
 
 func uploadDumpHandler(w http.ResponseWriter, r *http.Request, title string) {
-	platform := r.FormValue("platform")
-	companyName := r.FormValue("_companyName")
+	platform := "\nPlatform: " + r.FormValue("platform")
+	companyName := "\nCompany: " + r.FormValue("_companyName")
+	productName := "\nProduct: " + r.FormValue("_productName")
+	processType := "\nProcess Type: " + r.FormValue("process_type")
+	random1 := "\nRandom Data 1: " + r.FormValue("randomData1")
+	random2 := "\nRandom Data 2: " + r.FormValue("randomData2")
 	file, header, ferr := r.FormFile("upload_file_minidump")
 
-	body := platform + " " + companyName
+	body := platform + companyName + productName + processType + random1 + random2
 
-	body = body + " FileName: " + header.Filename
+	body = body + "\nFileName: " + header.Filename
 
 	defer file.Close()
 
